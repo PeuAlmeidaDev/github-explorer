@@ -7,13 +7,13 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 module.exports = {
   mode: isDevelopment ? "development" : "production", // modo de desenvolvimento
   devtool: isDevelopment ? "eval-source-map" : "source-map", // mapa de origem
-  entry: path.resolve(__dirname, "src", "index.jsx"), // caminho do arquivo de entrada
+  entry: path.resolve(__dirname, "src", "index.tsx"), // caminho do arquivo de entrada
   output: {
     path: path.resolve(__dirname, "dist"), // caminho do arquivo de saída
     filename: "bundle.js", // nome do arquivo de saída
   },
   resolve: {
-    extensions: [".js", ".jsx"], // extensões dos arquivos que o webpack vai ler
+    extensions: [".js", ".jsx", ".ts", ".tsx"], // extensões dos arquivos que o webpack vai ler
   },
   devServer: {
     static: {
@@ -30,7 +30,7 @@ module.exports = {
   module: { // configuração do webpack
     rules: [  // regra para o webpack
       {
-        test: /\.jsx?$/, // testa se o arquivo termina com .jsx
+        test: /\.(j|t)sx?$/, // testa se o arquivo termina com .jsx ou .tsx
         exclude: /node_modules/, // exclui o node_modules
         use: {
           loader: "babel-loader", // usa o babel-loader
